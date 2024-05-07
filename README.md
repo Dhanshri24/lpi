@@ -1,1 +1,1 @@
-# lpi
+print("Hello")
