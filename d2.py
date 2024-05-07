@@ -1,24 +1,19 @@
-def binary_search(arr, target):
-    left = 0
-    right = len(arr) - 1
-
-    while left <= right:
-        mid = (left + right) // 2
-
+def binary_search_recursive(arr, target, low, high):
+    if low <= high:
+        mid = (low + high) // 2
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
-            left = mid + 1
+            return binary_search_recursive(arr, target, mid + 1, high)
         else:
-            right = mid - 1
-
-    return -1  # If the target is not found
+            return binary_search_recursive(arr, target, low, mid - 1)
+    else:
+        return -1
 
 # Example usage:
-arr = [2, 4, 6, 8, 10, 12, 14]
-target = 10
-result = binary_search(arr, target)
-
+arr = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
+target = 23
+result = binary_search_recursive(arr, target, 0, len(arr) - 1)
 if result != -1:
     print(f"Element found at index {result}")
 else:
